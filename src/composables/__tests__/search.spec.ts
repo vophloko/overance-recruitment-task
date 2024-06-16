@@ -1,6 +1,6 @@
+import { nextTick, ref } from 'vue'
 import { describe, it, expect } from 'vitest'
 import { useSearch } from '@/composables/search'
-import { nextTick, ref } from 'vue'
 
 describe('useSearch', () => {
   it('correctly returns search results', async () => {
@@ -17,14 +17,14 @@ describe('useSearch', () => {
 
     const { isAnyFound, results, phrase, isItemAmongFound } = useSearch({ items })
 
-    phrase.value = ''
-    await nextTick()
-    expect(results.value.length).toBe(0)
-
     phrase.value = 'xyz'
     await nextTick()
     expect(results.value.length).toBe(0)
     expect(isAnyFound.value).toBe(false)
+
+    phrase.value = ''
+    await nextTick()
+    expect(results.value.length).toBe(0)
 
     phrase.value = 'abc'
     await nextTick()

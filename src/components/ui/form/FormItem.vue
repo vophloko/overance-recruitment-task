@@ -14,8 +14,8 @@ const emit = defineEmits<{
   <div class="form-item">
     <slot />
     <button
-      class="remove-button"
       v-if="removable"
+      class="remove-button"
       :disabled="removable.disabled"
       type="button"
       @click="emit('remove')"

@@ -4,9 +4,10 @@
 
 This task is based on several key assumptions:
 
-- Unless explicitly allowed in the task description, importing additional libraries is restricted to keep dependencies minimal.
-- `devDependencies` can be expanded to demonstrate linting and formatting preferences.
-- The application must pass accessibility requirements.
+- Importing additional libraries is restricted, unless explicitly permitted in the task description, to maintain minimal dependencies. However, `devDependencies` may be expanded to include tools for linting and formatting preferences.
+- The application must meet accessibility requirements and aim for a maximum Lighthouse score.
+- The use of Pinia is limited to the implementation of the _input factory_ for demonstration purposes, as its broader application is unnecessary in this context.
+- Styling is not a requirement but must not compromise accessibility.
 
 ## Recommended IDE Setup
 

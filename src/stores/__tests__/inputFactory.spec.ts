@@ -1,6 +1,6 @@
+import { setActivePinia, createPinia, storeToRefs } from 'pinia'
 import { beforeEach, describe, it, expect } from 'vitest'
 import { useInputFactory } from '@/stores/inputFactory'
-import { setActivePinia, createPinia, storeToRefs } from 'pinia'
 
 describe('useInputFactory', () => {
   beforeEach(() => {
@@ -17,11 +17,11 @@ describe('useInputFactory', () => {
 
   it('has upper limit', () => {
     const inputFactory = useInputFactory()
-    const { inputs, canAdd } = storeToRefs(inputFactory)
+    const { inputs, isAddDisabled } = storeToRefs(inputFactory)
 
-    expect(canAdd.value).toBe(true)
+    expect(isAddDisabled.value).toBe(false)
     Array.from({ length: 10 }).forEach(() => inputFactory.add())
-    expect(canAdd.value).toBe(false)
+    expect(isAddDisabled.value).toBe(true)
     inputFactory.add()
     expect(inputs.value.length).toBe(10)
   })
@@ -38,11 +38,11 @@ describe('useInputFactory', () => {
 
   it('has lower limit', () => {
     const inputFactory = useInputFactory()
-    const { inputs, canRemove } = storeToRefs(inputFactory)
+    const { inputs, isRemoveDisabled } = storeToRefs(inputFactory)
 
     Array.from({ length: 2 }).forEach(() => inputFactory.add())
     inputFactory.remove(inputs.value[0].id)
-    expect(canRemove.value).toBe(false)
+    expect(isRemoveDisabled.value).toBe(true)
     inputFactory.remove(inputs.value[0].id)
     expect(inputs.value.length).toBe(1)
   })

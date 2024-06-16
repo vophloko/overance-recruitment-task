@@ -14,7 +14,7 @@ export const useInputFactory = defineStore('inputFactory', () => {
   const incrementalId = ref(0)
   const inputs = ref<InputField[]>([])
 
-  const canAdd = computed(() => inputs.value.length < MAX_INPUT_FIELDS)
+  const isAddDisabled = computed(() => inputs.value.length >= MAX_INPUT_FIELDS)
   const add = () => {
     if (inputs.value.length >= MAX_INPUT_FIELDS) {
       return
@@ -27,7 +27,7 @@ export const useInputFactory = defineStore('inputFactory', () => {
     incrementalId.value++
   }
 
-  const canRemove = computed(() => inputs.value.length > MIN_INPUT_FIELDS)
+  const isRemoveDisabled = computed(() => inputs.value.length <= MIN_INPUT_FIELDS)
   const remove = (id: string) => {
     if (inputs.value.length <= MIN_INPUT_FIELDS) {
       return
@@ -35,5 +35,11 @@ export const useInputFactory = defineStore('inputFactory', () => {
     inputs.value = [...inputs.value.filter((item) => item.id !== id)]
   }
 
-  return { inputs, add, canAdd, remove, canRemove }
+  return {
+    inputs,
+    add,
+    isAddDisabled,
+    remove,
+    isRemoveDisabled
+  }
 })

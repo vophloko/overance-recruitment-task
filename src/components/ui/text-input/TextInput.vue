@@ -5,13 +5,23 @@ const inputRef = ref<HTMLInputElement | null>(null)
 
 const model = defineModel<string>()
 
+defineProps<{
+  searchActive?: boolean
+}>()
+
 defineExpose({
   inputRef
 })
 </script>
 
 <template>
-  <input v-model="model" ref="inputRef" class="text-input" type="text" />
+  <input
+    ref="inputRef"
+    v-model="model"
+    :class="{ '--search-active': searchActive }"
+    class="text-input"
+    type="text"
+  />
 </template>
 
 <style scoped>
@@ -21,5 +31,9 @@ defineExpose({
   border-radius: 0.25rem;
   line-height: 1.25;
   padding: 0.25rem 0.5rem;
+}
+
+.--search-active {
+  background-color: hsl(120, 100%, 50%);
 }
 </style>
