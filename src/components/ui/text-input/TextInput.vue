@@ -1,22 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const inputRef = ref<HTMLInputElement | null>(null)
-
 const model = defineModel<string>()
 
 defineProps<{
   searchActive?: boolean
 }>()
-
-defineExpose({
-  inputRef
-})
 </script>
 
 <template>
   <input
-    ref="inputRef"
     v-model="model"
     :class="{ '--search-active': searchActive }"
     class="text-input"
